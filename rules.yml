@@ -1,0 +1,6 @@
+groups:
+  - name: example-alert
+    rules:
+     - alert: gottadown
+       expr: up == 0
+       for: 1m
