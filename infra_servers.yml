@@ -7,7 +7,7 @@
              'sumadocker5.prv.suse.net:9100',
              'sumadocker6.prv.suse.net:9100'],
     labels: { 
-           server_role: "sumadocker",     
+           role: "sumadocker",     
            }
   },
 
@@ -16,7 +16,7 @@
               'suma-head-srv.mgr.suse.de:9187', # postgres_exporter
               'suma-head-srv.mgr.suse.de:5556'], # jmx_exporter
    labels: { 
-         server_role: "cucumber_head",     
+         role: "cucumber_head",     
          }
  },
 ]

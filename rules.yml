@@ -2,45 +2,45 @@ groups:
 - name: usefull-alert
   rules:
   - alert: InstanceDown
-    expr: up{job="example"} == 0
+    expr: up{role="cucumber_head"} == 0
     for: 3m
     labels:
       severity: critical
     annotations:
-      summary: "example - Instance DOWN"
+      summary: "cucumber_head - Instance DOWN"
       description: "{{ $labels.instance }} has been down for more than 3 minutes"
 
   - alert: "LoadAverageHigh"
-    expr: node_load15{job="example"} / count by (job, instance) (node_cpu{job="example", mode="system"}) > 1
+    expr: node_load15{role="cucumber_head"} / count by (role, instance) (node_cpu{role="cucumber_head", mode="system"}) > 1
     for: 15m
     labels:
       severity: warning
     annotations:
-      summary: "example - HIGH load"
+      summary: "cucumber_head - HIGH load"
       description: "{{ $labels.instance }} has a load of over 100% for more than 30 minutes"
 
   - alert: "LoadAverageHigh"
-    expr: node_load15{job="example"} / count by (job, instance) (node_cpu{job="example", mode="system"}) > 1
+    expr: node_load15{role="cucumber_head"} / count by (role, instance) (node_cpu{role="cucumber_head", mode="system"}) > 1
     for: 40m
     labels:
       severity: critical
     annotations:
-      summary: "example - VERY HIGH load"
+      summary: "cucumber_head - VERY HIGH load"
       description: "{{ $labels.instance }} has a load of over 100% for more than 1 hour"
 
   - alert: "LowDiskSpace"
-    expr: max by (job, instance, device) (node_filesystem_avail{job="example",  fstype=~"vfat|btrfs|xfs|ext\\d"} / node_filesystem_size) < 0.10
+    expr: max by (role, instance, device) (node_filesystem_avail{role="cucumber_head",  fstype=~"vfat|btrfs|xfs|ext\\d"} / node_filesystem_size) < 0.10
     labels:
       severity: warning
     annotations:
-      summary: "example - LOW disk space"
+      summary: "cucumber_head - LOW disk space"
       description: "{{ $labels.instance }} has less than 10% of disk space available on device {{ $labels.device }}"
 
   - alert: "LowDiskSpace"
-    expr: max by (job, instance, device) (node_filesystem_avail{job="example",  fstype=~"vfat|btrfs|xfs|ext\\d"} / node_filesystem_size) < 0.05
+    expr: max by (role, instance, device) (node_filesystem_avail{role="cucumber_head",  fstype=~"vfat|btrfs|xfs|ext\\d"} / node_filesystem_size) < 0.05
     labels:
       severity: critical
     annotations:
-      summary: "example - VERY LOW disk space"
+      summary: "cucumber_head - VERY LOW disk space"
       description: "{{ $labels.instance }} has less than 5% of disk space available on device {{ $labels.device }}"
 

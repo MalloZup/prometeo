@@ -26,7 +26,7 @@ scrape_configs:
        - 'infra_servers.yml'
 
     relabel_configs:
-       - source_labels: [server_role]
+       - source_labels: [role]
          regex: sumadocker
          action: keep
 
@@ -46,6 +46,6 @@ scrape_configs:
        - 'infra_servers.yml'
 
     relabel_configs:
-       - source_labels: [server_role]
+       - source_labels: [role]
          regex: cucumber_head
          action: keep
