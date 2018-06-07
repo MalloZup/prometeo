@@ -1,0 +1,22 @@
+[
+  {
+    targets:   ['sumadocker1.mgr.suse.de:9100',
+             'sumadocker2.mgr.suse.de:9100',
+             'sumadocker3.mgr.suse.de:9100',
+             'sumadocker4.mgr.suse.de:9100',
+             'sumadocker5.prv.suse.net:9100',
+             'sumadocker6.prv.suse.net:9100'],
+    labels: { 
+           server_role: "sumadocker",     
+           }
+  },
+
+ {
+   targets:    ['suma-head-srv.mgr.suse.de:9100', # node_exporeter
+              'suma-head-srv.mgr.suse.de:9187', # postgres_exporter
+              'suma-head-srv.mgr.suse.de:5556'], # jmx_exporter
+   labels: { 
+         server_role: "cucumber_head",     
+         }
+ },
+]

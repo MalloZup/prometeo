@@ -18,8 +18,34 @@ rule_files:
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'sumadocker'
 
-  - job_name: 'Suse Manager kvm-host'
- 
-    static_configs:    
-      - targets: ['10.162.2.78:9100']
+    file_sd_configs:
+     - files:
+       - 'infra_servers.yml'
+
+    relabel_configs:
+       - source_labels: [server_role]
+         regex: sumadocker
+         action: keep
+
+    params:
+      collect[]:
+        - cpu
+        - meminfo
+        - diskstats
+        - netdev
+        - netstat
+
+  - job_name: 'head_cucumber'
+    scrape_interval: 20s
+
+    file_sd_configs:
+     - files:
+       - 'infra_servers.yml'
+
+    relabel_configs:
+       - source_labels: [server_role]
+         regex: cucumber_head
+         action: keep
