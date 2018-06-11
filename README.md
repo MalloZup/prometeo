@@ -5,5 +5,5 @@ prometheus experiments for learning
 
 ```bash
 docker pull prom/blackbox-exporter
-docker run -d -p 9115:9115 --name blackbox-exporter prom/blackbox-exporter
+docker run -d -p 9115:9115 --name blackbox-exporter -v `pwd`:/config prom/blackbox-exporter --config.file=/config/blackbox.yml
 ```

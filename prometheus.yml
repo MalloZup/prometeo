@@ -57,7 +57,7 @@ scrape_configs:
     static_configs:
       - targets:
         - http://prometheus.io    # Target to probe with http.
-        - https:manager.suse.de/rhn/Login.do   # Target to probe with https
+        - https://manager.suse.de
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
